@@ -1,135 +1,797 @@
 <!doctype html>
 <html lang="th">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#ff82ad" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <title>น้องแชมป์ขอโทษพี่พิ้งค์มากๆ</title>
-  <style>
-    :root { --pink:#ff6f9f; --deep:#d94278; --cream:#fff8fb; --ink:#72334d; --violet:#b27cff; --gold:#ffd15c; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100svh; overflow-x:hidden; color:var(--ink); font-family:"Itim","Noto Sans Thai",system-ui,sans-serif; background:radial-gradient(circle at 12% 4%,#fff 0 2%,transparent 20%),radial-gradient(circle at 93% 20%,#ffe8a8 0,transparent 18%),linear-gradient(155deg,#ffd4e5,#fff8fc 48%,#eedcff); }
-    body:before { content:""; position:fixed; inset:0; pointer-events:none; background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#ff8eb5 1px,transparent 1.5px); background-size:31px 31px,53px 53px; background-position:0 0,13px 17px; opacity:.3; z-index:-2; animation:driftDots 15s linear infinite; }
-    .wrap { width:min(100%,460px); min-height:100svh; margin:auto; padding:20px 18px calc(28px + env(safe-area-inset-bottom)); text-align:center; position:relative; display:flex; flex-direction:column; align-items:center; }
-    .wrap:after { content:""; position:absolute; top:11px; width:112px; height:5px; border-radius:10px; background:linear-gradient(90deg,transparent,#ff9aba,#ffd873,#ff9aba,transparent); opacity:.9; }
-    .blob { position:fixed; border-radius:50%; opacity:.52; filter:blur(5px); z-index:-1; animation:float 6s ease-in-out infinite; }
-    .b1{width:185px;height:185px;background:#ff9ec0;top:-45px;left:-55px}.b2{width:155px;height:155px;background:#ffd061;right:-55px;top:22%}.b3{width:210px;height:210px;background:#c9a6ff;bottom:-80px;left:4%}
-    @keyframes float {50%{transform:translateY(14px) rotate(8deg)}}
-    .sparkle { font-family:Georgia,serif; font-size:25px; letter-spacing:10px; margin:14px 0 8px; color:#d45b83; text-shadow:0 0 15px #fff; animation:pop 1.8s infinite alternate; }
-    @keyframes pop {to{transform:scale(1.12) rotate(3deg)}}
-    h1 { font-family:"Itim","Noto Sans Thai",sans-serif; font-size:clamp(26px,6.5vw,33px); font-weight:400; line-height:1.15; white-space:nowrap; margin:8px 0 5px; letter-spacing:-.8px; background:linear-gradient(100deg,#d73f75,#fb71a5,#b36fd9); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 2px 0 #fff); }
-    .from { margin:0 0 7px; color:#ca5b81; font-size:15px; font-weight:800; letter-spacing:.2px; text-shadow:0 1px #fff; }
-    .subtitle { margin:0 0 18px; font-size:16px; min-height:28px; }
-    .card { position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(145deg,rgba(255,255,255,.93),rgba(255,244,249,.72)); border:1px solid rgba(255,255,255,.98); border-radius:30px; box-shadow:0 18px 38px #bf557145, inset 0 1px #fff; backdrop-filter:blur(12px); padding:25px 20px; width:100%; }
-    .card:before { content:""; position:absolute; z-index:-1; width:220px; height:220px; right:-110px; top:-150px; border-radius:50%; background:#ffc6da; opacity:.65; filter:blur(8px); }
-    .bear { width:115px; height:108px; filter:drop-shadow(0 8px 6px #de70954a); display:grid; place-items:center; margin:0 auto 13px; font-size:84px; line-height:1; animation:wiggle 2.8s ease-in-out infinite; }
-    @keyframes wiggle {0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg) translateY(-4px)}}
-    .card > strong { display:block; margin:0 0 14px; font-size:16px; color:#914561; }
-    .letter { display:none; margin:12px 1px 0; padding:16px; background:#fff1f6; border-radius:18px; line-height:1.7; font-size:16px; animation:rise .45s ease-out; }
-    .letter.show { display:block; }
-    @keyframes rise {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-    button { appearance:none; border:0; border-radius:999px; cursor:pointer; font-family:"Itim","Noto Sans Thai",sans-serif; font-weight:400; min-height:50px; padding:12px 22px; transition:transform .18s, box-shadow .18s; }
-    button:active { transform:scale(.96); }
-    .primary { position:relative; isolation:isolate; overflow:hidden; color:white; background:linear-gradient(135deg,#ff78a9,#ef3271 56%,#d7388a); box-shadow:0 9px 18px #dc3d7260, inset 0 1px #ffdeea; margin-top:18px; }
-    .primary:before { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(105deg,transparent 30%,#ffffff9e 50%,transparent 70%); transform:translateX(-130%); animation:buttonShine 2.8s infinite; }
-    @keyframes buttonShine { 40%,100%{transform:translateX(130%)} }
-    .primary:hover { box-shadow:0 13px 25px #dc3d7275; }
-    .reasons { width:100%; margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
-    .reason { background:linear-gradient(155deg,#fff,#fff1f7); border:1px solid #ffd0e0; color:#a6466a; padding:11px 7px; min-height:96px; border-radius:20px; font-size:13px; line-height:1.35; box-shadow:0 7px 15px #bd55742b, inset 0 1px #fff; transition:transform .2s,box-shadow .2s; }
-    .reason:hover { transform:translateY(-4px) rotate(-1deg); box-shadow:0 12px 20px #bd557442; }
-    .sticker { display:block; width:38px; height:38px; margin:0 auto 5px; filter:drop-shadow(0 2px 1px #e083a73d); }
-    .apology-deck { width:100%; margin-top:18px; padding:18px 13px 15px; border-radius:27px; background:rgba(255,255,255,.52); border:1px solid #ffffffc9; box-shadow:0 12px 25px #c45d7b24; backdrop-filter:blur(8px); }
-    .deck-title { margin:0 0 3px; color:#ca4d79; font-size:19px; }.deck-note { margin:0 0 13px; color:#9d5e73; font-size:12px; }
-    .deck-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; perspective:900px; }
-    .apology-card { position:relative; min-height:139px; padding:0; border:0; border-radius:17px; background:transparent; cursor:pointer; transform-style:preserve-3d; transition:transform .65s cubic-bezier(.2,.75,.15,1); box-shadow:none; }
-    .apology-card.is-open { transform:rotateY(180deg); }
-    .apology-card .face { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:9px 7px; border-radius:17px; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
-    .apology-card .front { color:#fff; background:linear-gradient(145deg,#ff94b7,#e94f85); border:1px solid #fff7; box-shadow:0 8px 13px #bd3f6a45, inset 0 1px #fff8; }
-    .apology-card:nth-child(2) .front { background:linear-gradient(145deg,#c9a6ff,#9c75e3); }.apology-card:nth-child(3) .front { background:linear-gradient(145deg,#ffc96c,#f38d7d); }
-    .card-mark { width:40px; height:40px; display:grid; place-items:center; margin-bottom:7px; border:1px solid #fff9; border-radius:50%; font:28px/1 Georgia,serif; background:#ffffff28; }.front span:last-child { font-size:12px; font-weight:800; }
-    .apology-card .back { color:#80445d; background:linear-gradient(145deg,#fff,#fff0f6); border:1px solid #ffd2e2; transform:rotateY(180deg); box-shadow:0 8px 13px #bd3f6a2e; font-size:12px; line-height:1.45; }.apology-card .back b { display:block; color:#e24a7e; margin-bottom:4px; font-size:13px; }
-    .ask { width:100%; position:relative; overflow:hidden; margin:20px 0 0; padding:21px 14px; border:1px solid #ffafd0; border-radius:28px; background:linear-gradient(135deg,#ff9cbe,#ff5e99 55%,#e754a0); color:#fff; box-shadow:0 16px 30px #df47776b, inset 0 1px #ffe7f0; }
-    .ask:before { content:""; position:absolute; width:180px; height:180px; border:25px solid #ffffff2d; border-radius:50%; top:-110px; right:-75px; }
-    .ask h2 { margin:0 0 13px; font-size:20px; }
-    .choices { display:flex; justify-content:center; align-items:center; gap:10px; min-height:52px; position:relative; }
-    .yes { background:linear-gradient(135deg,#fff,#fff6fa); color:#df3f76; box-shadow:0 6px 12px #ae235350; }
-    .no { color:white; background:linear-gradient(135deg,#d95782,#b93566); font-size:14px; padding:10px 16px; min-height:43px; box-shadow:0 5px 10px #8e20473b; }
-    .yes.growing { transition:transform .38s cubic-bezier(.2,.8,.25,1), padding .38s, font-size .38s, box-shadow .38s; }
-    .no.fading { transition:opacity .28s, transform .4s; opacity:0; transform:scale(.1); pointer-events:none; }
-    .note { font-size:12px; opacity:.84; margin:12px 0 0; }
-    .hug-card { padding:3px 6px 2px; animation:rise .55s ease-out; }
-    .hug-card .hug-symbol { display:grid; place-items:center; width:60px; height:60px; margin:0 auto 8px; border-radius:50%; background:#fff; color:#ff4f91; font:46px/1 Georgia,serif; box-shadow:0 7px 15px #b9285c38; }
-    .hug-card h2 { font-size:23px; margin:4px 0 7px; }.hug-card p { margin:0; line-height:1.65; font-size:15px; }.hug-card b { color:#fff; }
-    .heart { position:fixed; pointer-events:none; z-index:4; color:#ff4f91; font-family:Georgia,serif; animation:fly 1.3s ease-out forwards; }
-    @keyframes fly {to{transform:translate(var(--x),var(--y)) rotate(25deg);opacity:0}}
-    .background-heart { position:fixed; bottom:-45px; z-index:-1; pointer-events:none; opacity:0; font-family:Georgia,serif; animation:backgroundFloat var(--duration) linear forwards; filter:drop-shadow(0 3px 2px #cf5a7d30); }
-    @keyframes backgroundFloat { 0%{transform:translateY(0) rotate(-8deg) scale(.65);opacity:0} 12%{opacity:.55} 88%{opacity:.42} 100%{transform:translate(var(--drift),-112svh) rotate(20deg) scale(1.15);opacity:0} }
-    .modal { display:none; position:fixed; inset:0; overflow:hidden; background:radial-gradient(circle at 50% 45%,#ffeff7 0%,#ffb8d0 38%,#c54879 130%); z-index:5; padding:22px; place-items:center; }
-    .modal.show { display:grid; }
-    .modalbox { max-width:360px; width:100%; position:relative; isolation:isolate; background:linear-gradient(145deg,#fff,#fff0f6); border:2px solid #fff; border-radius:34px; padding:32px 23px 25px; box-shadow:0 18px 45px #50152b75,0 0 0 9px #ffffff30; animation:celebrateIn .7s cubic-bezier(.16,1,.3,1); }
-    .modalbox:before { content:""; position:absolute; inset:8px; z-index:-1; border:1px dashed #ffa1c0; border-radius:27px; }
-    @keyframes celebrateIn {0%{opacity:0;transform:scale(.45) rotate(-8deg)}65%{transform:scale(1.05) rotate(2deg)}100%{opacity:1;transform:none}}
-    .modalbox .big { font-size:72px; margin:0; animation:bigBeat .8s infinite alternate; }.modalbox h2 {color:#dc3e72;margin:8px 0;font-size:24px}.modalbox p{line-height:1.7;margin:0 0 17px;font-size:16px}.modalbox b{color:#d83d71;font-size:18px}@keyframes bigBeat{to{transform:scale(1.16) rotate(5deg)}}
-    .confetti { position:fixed; z-index:7; pointer-events:none; width:12px; height:12px; border-radius:3px; animation:confettiFall 2.6s cubic-bezier(.2,.75,.25,1) forwards; }
-    @keyframes confettiFall {0%{transform:translate(0,0) rotate(0) scale(.5);opacity:1}100%{transform:translate(var(--cx),var(--cy)) rotate(720deg) scale(1.1);opacity:0}}
-    .modal-heart { position:fixed; z-index:6; pointer-events:none; font-family:Georgia,serif; animation:modalRise 2.8s ease-out forwards; }@keyframes modalRise{to{transform:translate(var(--mx),-115svh) rotate(30deg) scale(1.4);opacity:0}}
-    .footer { font-size:12px; opacity:.62; margin-top:auto; padding-top:22px; }
-    .stardust { position:fixed; z-index:-1; pointer-events:none; color:#fff; font:18px/1 Georgia,serif; text-shadow:0 0 10px #ff6fa3; animation:stardust 4s ease-in-out forwards; }
-    @keyframes stardust { 0%{opacity:0;transform:scale(.3) rotate(0)}30%{opacity:.95}100%{opacity:0;transform:translateY(-45px) scale(1.6) rotate(90deg)} }
-    @keyframes driftDots { to { background-position:31px 31px,66px 70px; } }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>จัสรักพี่อิง</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap');
+
+        :root {
+            --pink: #ff7fab;
+            --rose: #df5b91;
+            --ink: #695465
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--ink);
+            font-family: Mali, cursive;
+            background: linear-gradient(180deg, #dff5ff, #fff5f7 48%, #fff9e9);
+            transition: .5s
+        }
+
+        .scene {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .sun {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            right: 8vw;
+            top: 8vh;
+            border-radius: 50%;
+            background: #fff1a8;
+            box-shadow: 0 0 0 15px #fff8cf88, 0 0 45px #fff4b5
+        }
+
+        .cloud {
+            position: absolute;
+            width: 150px;
+            height: 42px;
+            border-radius: 30px;
+            background: #fff;
+            opacity: .88;
+            filter: drop-shadow(0 7px 4px #97b9c330);
+            animation: cloud 27s linear infinite
+        }
+
+        .cloud:before,
+        .cloud:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: inherit
+        }
+
+        .cloud:before {
+            width: 70px;
+            height: 70px;
+            bottom: 7px;
+            left: 24px
+        }
+
+        .cloud:after {
+            width: 48px;
+            height: 48px;
+            bottom: 4px;
+            right: 20px
+        }
+
+        .c1 {
+            top: 13%;
+            left: -160px;
+            animation-delay: -14s
+        }
+
+        .c2 {
+            top: 29%;
+            left: -160px;
+            transform: scale(.65);
+            animation-duration: 35s
+        }
+
+        .c3 {
+            top: 5%;
+            left: -160px;
+            transform: scale(.45);
+            animation-delay: -6s
+        }
+
+        @keyframes cloud {
+            to {
+                margin-left: 125vw
+            }
+        }
+
+        .hill {
+            position: absolute;
+            width: 125%;
+            height: 30vh;
+            bottom: -10vh;
+            border-radius: 50% 50% 0 0;
+            background: #cbefd9;
+            left: -14%;
+            box-shadow: inset 0 15px #e5faed
+        }
+
+        .hill.two {
+            bottom: -18vh;
+            left: 15%;
+            background: #b9e8ce
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 7vh;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ff9ec0;
+            box-shadow: 12px 0 #ffca7b, -12px 0 #ffca7b, 0 12px #ff9ec0, 0 -12px #ff9ec0;
+            animation: sway var(--d) ease-in-out infinite alternate;
+            transform-origin: bottom
+        }
+
+        @keyframes sway {
+            to {
+                transform: rotate(10deg) translateY(-4px)
+            }
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            max-width: 840px;
+            margin: auto;
+            padding: 16px 19px
+        }
+
+        .brand,
+        h1,
+        h2 {
+            font-family: Fredoka, Mali;
+            color: var(--rose)
+        }
+
+        .brand {
+            font-size: 1rem
+        }
+
+        .pill,
+        .mini-btn {
+            border: 0;
+            border-radius: 99px;
+            padding: 9px 12px;
+            background: #ffffffad;
+            color: #b16387;
+            font: 600 .78rem Mali;
+            cursor: pointer;
+            box-shadow: 0 3px 9px #9c749d23
+        }
+
+        main {
+            max-width: 840px;
+            margin: auto;
+            padding: 20px 17px 60px;
+            position: relative
+        }
+
+        .hero {
+            min-height: 480px;
+            display: grid;
+            place-items: center;
+            text-align: center
+        }
+
+        .hero-card {
+            width: min(100%, 590px);
+            padding: 33px 28px 28px;
+            border: 2px solid #ffffffdb;
+            border-radius: 35px;
+            background: #ffffffa8;
+            box-shadow: 0 17px 45px #b38eaa4d;
+            backdrop-filter: blur(10px);
+            animation: rise .8s both
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.94)
+            }
+        }
+
+        .dog {
+            width: 125px;
+            height: 105px;
+            margin: -60px auto 4px;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 6px #9f654645);
+            animation: bob 2.4s ease-in-out infinite
+        }
+
+        .dog svg {
+            width: 100%;
+            height: 100%
+        }
+
+        @keyframes bob {
+            50% {
+                transform: translateY(-9px) rotate(-3deg)
+            }
+        }
+
+        .dog.happy {
+            animation: spin .6s ease
+        }
+
+        @keyframes spin {
+            50% {
+                transform: scale(1.2) rotate(15deg)
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 7vw, 3.25rem);
+            line-height: 1.12;
+            margin: 20px 0 11px
+        }
+
+        h2 {
+            font-size: clamp(1.45rem, 5vw, 2rem);
+            margin: 0 0 16px
+        }
+
+        .lead {
+            font-size: clamp(.95rem, 3.5vw, 1.1rem);
+            line-height: 1.8;
+            margin: 0
+        }
+
+        .tiny {
+            font-size: .78rem;
+            color: #ae8598;
+            margin: 8px 0 0
+        }
+
+        .main-btn {
+            border: 0;
+            border-radius: 99px;
+            padding: 13px 21px;
+            margin-top: 19px;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(105deg, #ff76aa, #ffa378);
+            font: 700 1rem Fredoka;
+            box-shadow: 0 6px 0 #d75187, 0 11px 18px #e67c9b63;
+            transition: .18s
+        }
+
+        .main-btn:hover {
+            transform: translateY(-3px)
+        }
+
+        .main-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 1px 0 #d75187
+        }
+
+        .section {
+            margin: 38px 0;
+            text-align: center
+        }
+
+        .sub {
+            margin: -8px 0 17px;
+            font-size: .85rem;
+            color: #a58697
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .card {
+            border: 0;
+            min-height: 129px;
+            border-radius: 25px;
+            padding: 14px 9px;
+            cursor: pointer;
+            color: var(--ink);
+            font: 600 .88rem Mali;
+            background: #ffffffbc;
+            box-shadow: 0 8px 19px #a9809b35;
+            transition: .2s
+        }
+
+        .card:hover {
+            transform: translateY(-7px) rotate(var(--r));
+            background: #fff
+        }
+
+        .icon {
+            width: 43px;
+            height: 43px;
+            margin: 0 auto 5px;
+            display: block
+        }
+
+        .reply {
+            margin: 14px auto 0;
+            max-width: 570px;
+            min-height: 50px;
+            padding: 12px 16px;
+            border-radius: 17px;
+            background: #fffdfbbf;
+            font-size: .92rem;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            transform: scale(.94);
+            transition: .25s
+        }
+
+        .reply.show {
+            opacity: 1;
+            transform: none
+        }
+
+        .jar-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 17px;
+            align-items: center;
+            text-align: left;
+            padding: 22px;
+            border-radius: 29px;
+            background: linear-gradient(130deg, #fff5eddb, #f5edffdb);
+            box-shadow: 0 13px 28px #a47e9a2b
+        }
+
+        .jar {
+            position: relative;
+            width: 128px;
+            height: 150px;
+            margin: auto;
+            border: 6px solid #b9dcf0;
+            border-top: 0;
+            border-radius: 23px 23px 46px 46px;
+            background: #ffffff99;
+            box-shadow: inset 0 -16px #dff4ff, 0 8px 13px #8ea2b93d;
+            overflow: hidden
+        }
+
+        .jar:before {
+            content: '';
+            position: absolute;
+            width: 103px;
+            height: 18px;
+            top: 0;
+            left: 7px;
+            border-radius: 10px;
+            background: #91c5df
+        }
+
+        .jar-heart {
+            position: absolute;
+            bottom: 13px;
+            left: 42px;
+            width: 38px;
+            height: 34px;
+            animation: beat 1.2s infinite alternate
+        }
+
+        .jar-heart svg {
+            width: 100%
+        }
+
+        .jar .mini-heart {
+            position: absolute;
+            width: 27px;
+            height: 24px;
+            z-index: 2;
+            animation: drop-heart .55s cubic-bezier(.15, 1.15, .45, 1) both
+        }
+
+        .jar .mini-heart svg {
+            width: 100%;
+            height: 100%
+        }
+
+        @keyframes drop-heart {
+            from {
+                transform: translateY(-60px) scale(.4) rotate(-20deg);
+                opacity: 0
+            }
+            to {
+                transform: translateY(0) scale(1) rotate(var(--tilt));
+                opacity: 1
+            }
+        }
+
+        .jar.is-full:after {
+            content: 'เต็มแล้ว';
+            position: absolute;
+            z-index: 4;
+            left: 50%;
+            top: 51%;
+            transform: translate(-50%, -50%);
+            color: #d95a8c;
+            font: 700 .72rem Fredoka, Mali;
+            white-space: nowrap;
+            background: #fff9;
+            padding: 3px 7px;
+            border-radius: 99px
+        }
+
+        @keyframes beat {
+            to {
+                transform: scale(1.18)
+            }
+        }
+
+        .jar p {
+            font-size: .92rem;
+            line-height: 1.7;
+            margin: 0 0 9px
+        }
+
+        .wish {
+            font-size: .79rem !important;
+            min-height: 26px;
+            color: #aa7791
+        }
+
+        .activity {
+            padding: 22px 16px;
+            border-radius: 29px;
+            background: #ffffffb8;
+            box-shadow: 0 13px 28px #a47e9a2b
+        }
+
+        .moods {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .mood {
+            width: 53px;
+            height: 53px;
+            border: 0;
+            border-radius: 17px;
+            background: #fff1f5;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #efc9d9;
+            transition: .2s
+        }
+
+        .mood svg {
+            width: 29px
+        }
+
+        .mood:hover,
+        .mood.active {
+            transform: translateY(-5px) rotate(7deg);
+            background: #ffe2ec
+        }
+
+        .mood-msg {
+            min-height: 37px;
+            margin: 13px 0 3px;
+            font-size: .9rem
+        }
+
+        .star-note {
+            font-size: .77rem;
+            color: #b68ca0
+        }
+
+        .star {
+            position: fixed;
+            z-index: 8;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            filter: drop-shadow(0 3px 3px #78608048);
+            animation: star 1.1s infinite alternate
+        }
+
+        .star svg {
+            width: 100%;
+            height: 100%
+        }
+
+        @keyframes star {
+            to {
+                transform: scale(1.35) rotate(18deg)
+            }
+        }
+
+        .footer {
+            text-align: center;
+            font-size: .78rem;
+            color: #a68293;
+            padding-top: 15px
+        }
+
+        .pop {
+            position: fixed;
+            z-index: 10;
+            pointer-events: none;
+            width: 25px;
+            height: 25px;
+            animation: pop 1.2s ease-out forwards
+        }
+
+        .pop svg {
+            width: 100%
+        }
+
+        @keyframes pop {
+            to {
+                transform: translate(var(--x), -160px) rotate(270deg);
+                opacity: 0
+            }
+        }
+
+        body.night {
+            background: linear-gradient(180deg, #25284e, #443556 50%, #51445f)
+        }
+
+        body.night .sun {
+            background: #f9eeff;
+            box-shadow: 0 0 30px #d9c7ff
+        }
+
+        body.night .hero-card,
+        body.night .activity {
+            background: #211d3caa;
+            border-color: #ffffff42
+        }
+
+        body.night .card {
+            background: #302646d9;
+            color: #fff7fd;
+            border: 1px solid #ffffff25
+        }
+
+        body.night .lead,
+        body.night .jar p,
+        body.night .mood-msg {
+            color: #fffafd
+        }
+
+        body.night .sub,
+        body.night .tiny,
+        body.night .footer,
+        body.night .star-note,
+        body.night .wish {
+            color: #f0ddeb
+        }
+
+        body.night h1,
+        body.night h2,
+        body.night .brand {
+            color: #ffc8e0
+        }
+
+        body.night .reply {
+            background: #302646e8;
+            color: #fffafd
+        }
+
+        body.night .jar-wrap {
+            background: #28213fda;
+            color: #fffafd
+        }
+
+        body.night .pill,
+        body.night .mini-btn {
+            background: #fff0f6;
+            color: #9c416d
+        }
+
+        body.night .mood {
+            background: #433453
+        }
+
+        body.night .mood:hover,
+        body.night .mood.active {
+            background: #67435e
+        }
+
+        .night-stars {
+            display: none
+        }
+
+        body.night .night-stars {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: radial-gradient(#fff 1px, transparent 1px);
+            background-size: 55px 55px;
+            opacity: .45
+        }
+
+        @media(max-width:560px) {
+            main {
+                padding: 13px 13px 42px
+            }
+
+            .hero {
+                min-height: 430px
+            }
+
+            .hero-card {
+                padding: 30px 18px 23px
+            }
+
+            .cards {
+                gap: 8px
+            }
+
+            .card {
+                min-height: 112px;
+                font-size: .76rem;
+                padding: 10px 5px
+            }
+
+            .jar-wrap {
+                display: block;
+                padding: 16px;
+                text-align: center
+            }
+
+            .jar {
+                width: 105px;
+                height: 124px;
+                margin: 0 auto 10px;
+                transform: none
+            }
+
+            .jar:before {
+                width: 82px;
+                left: 6px
+            }
+
+            .jar-heart {
+                left: 31px;
+                bottom: 10px
+            }
+
+            .top {
+                padding: 12px 14px
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
-  <main class="wrap">
-    <div class="sparkle">✦ ♡ ✦</div>
-    <h1>จากน้องแชมป์ถึงพี่พิ้งค์</h1>
-    <p class="from">น้องแชมป์คิดถึงพี่พิ้งค์มาก ๆ ♥</p>
-    <p class="subtitle" id="typing">ให้โอกาสน้องแชมป์ได้ไหม</p>
-    <section class="card">
-      <div class="bear" role="img" aria-label="น้องหมา">🐶</div>
-      <strong>มีข้อความเล็ก ๆ มาส่งให้ถึงพี่พิ้งค์</strong>
-      <div class="letter" id="letter">น้องแชมป์ขอโทษจริง ๆ ที่ทำให้พี่พิ้งค์รู้สึกแย่<br>น้องแชมป์อาจจะแย่ แต่พี่พิ้งค์สำคัญกับน้องแชมป์มาก ๆ<br><b>ขอให้น้องแชมป์แก้ตัวและดูแลพี่พิ้งค์ให้ดีกว่านี้ได้ไหมคับ</b></div>
-      <button class="primary" id="openLetter">กดเปิดอ่านข้อความ</button>
-    </section>
-    <section class="reasons" aria-label="สิ่งที่อยากบอก">
-      <div class="reason"><svg class="sticker" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="9" fill="#ffbd43"/><g fill="#ff91b2"><ellipse cx="24" cy="8" rx="6" ry="12"/><ellipse cx="40" cy="24" rx="12" ry="6"/><ellipse cx="24" cy="40" rx="6" ry="12"/><ellipse cx="8" cy="24" rx="12" ry="6"/><ellipse cx="35" cy="13" rx="6" ry="12" transform="rotate(45 35 13)"/><ellipse cx="13" cy="35" rx="6" ry="12" transform="rotate(45 13 35)"/><ellipse cx="13" cy="13" rx="6" ry="12" transform="rotate(-45 13 13)"/><ellipse cx="35" cy="35" rx="6" ry="12" transform="rotate(-45 35 35)"/></g><circle cx="21" cy="22" r="1.5"/><circle cx="27" cy="22" r="1.5"/><path d="M20 27q4 4 8 0" fill="none" stroke="#8b5a36" stroke-width="1.5" stroke-linecap="round"/></svg>น้องแชมป์คิดถึงเสียงของพี่พิ้งค์มากๆเยย</div>
-      <div class="reason"><svg class="sticker" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 43C-1 27 9 6 22 16c1-9 14-9 17 2 4 14-5 21-15 25Z" fill="#ff7fac"/><path d="M17 25c3-3 5 0 7 3 2-3 5-6 8-3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="20" r="1.5" fill="#753b56"/><circle cx="29" cy="20" r="1.5" fill="#753b56"/></svg>น้องแชมป์อยากอยู่กับพี่พิ้งค์</div>
-      <div class="reason"><svg class="sticker" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38h28l-3-19H13Z" fill="#ffd197"/><path d="M13 25h22v13H13Z" fill="#ff90b1"/><path d="M17 21c0-8 14-8 14 0" fill="#fff8f9"/><path d="M24 14c-5-6-10 2 0 9 10-7 5-15 0-9Z" fill="#ff5c91"/><circle cx="20" cy="31" r="1.5" fill="#85425d"/><circle cx="28" cy="31" r="1.5" fill="#85425d"/><path d="M20 35q4 3 8 0" fill="none" stroke="#85425d" stroke-width="1.5" stroke-linecap="round"/></svg>น้องแชมป์อยากจะอวดพี่พิ้งค์ทุกวันเลย</div>
-    </section>
-    <section class="apology-deck" aria-label="การ์ดคำขอโทษ">
-      <h2 class="deck-title">การ์ดคำขอโทษ</h2>
-      <p class="deck-note">แตะการ์ดเพื่อเปิดอ่านข้อความจากน้องแชมป์</p>
-      <div class="deck-grid">
-        <button class="apology-card" type="button" aria-label="เปิดการ์ดคำขอโทษใบที่หนึ่ง"><span class="face front"><span class="card-mark">♥</span><span>เปิดการ์ด</span></span><span class="face back"><b>ใบที่ 1</b>น้องแชมป์ขอโทษที่ทำให้พี่พิ้งค์ไม่สบายใจ</span></button>
-        <button class="apology-card" type="button" aria-label="เปิดการ์ดคำขอโทษใบที่สอง"><span class="face front"><span class="card-mark">✦</span><span>เปิดการ์ด</span></span><span class="face back"><b>ใบที่ 2</b>น้องแชมป์จะตั้งใจฟังพี่พิ้งค์ให้มากกว่านี้คับ</span></button>
-        <button class="apology-card" type="button" aria-label="เปิดการ์ดคำขอโทษใบที่สาม"><span class="face front"><span class="card-mark">♡</span><span>เปิดการ์ด</span></span><span class="face back"><b>ใบที่ 3</b>ขอให้น้องแชมป์ได้ดูแลพี่พิ้งค์นะคับ</span></button>
-      </div>
-    </section>
-    <section class="ask">
-      <h2>ให้โอกาสน้องแชมป์ง้อพี่พิ้งค์ได้มั้ย?</h2>
-      <div class="choices"><button class="yes" id="yes">ได้เลย</button><button class="no" id="no">ยังงอนอยู่</button></div>
-      <p class="note">*ปุ่มข้าง ๆ อาจขี้อายนิดนึง</p>
-    </section>
-    <p class="footer">ทำด้วยความคิดถึงและความตั้งใจทั้งหมด ♡</p>
-  </main>
-  <div class="modal" id="modal"><div class="modalbox"><p class="big">♥</p><h2>ขอขอบคุณพี่พิ้งค์มาก ๆ เลย ที่ยังให้โอกาสน้องแชมป์ได้อยู่กับพี่พิ้งค์</h2><p><b>น้องแชมป์ขอโทษจากใจจริง</b><br>น้องแชมป์รักพี่พิ้งค์มาก ๆ<br>สัญญาว่าจะตั้งใจดูแลความรู้สึกพี่พิ้งค์ให้ดีกว่านี้</p><button class="primary" id="close">กอด ๆ กันนะคับ</button></div></div>
-  <script>
-    const letter=document.querySelector('#letter'),open=document.querySelector('#openLetter'),yes=document.querySelector('#yes'),no=document.querySelector('#no'),modal=document.querySelector('#modal'),ask=document.querySelector('.ask');
-    open.onclick=()=>{letter.classList.toggle('show');open.textContent=letter.classList.contains('show')?'อ่านแล้วนะ':'กดเปิดอ่านข้อความ';hearts(open,10)};
-    document.querySelectorAll('.apology-card').forEach(card=>card.addEventListener('click',()=>{card.classList.toggle('is-open');if(card.classList.contains('is-open'))hearts(card,8)}));
-    function hearts(from,count){const r=from.getBoundingClientRect();for(let i=0;i<count;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♥','♡','✦','♥'][i%4];h.style.left=(r.left+r.width/2)+'px';h.style.top=(r.top+r.height/2)+'px';h.style.setProperty('--x',(Math.random()*220-110)+'px');h.style.setProperty('--y',(-70-Math.random()*170)+'px');document.body.append(h);setTimeout(()=>h.remove(),1400)}}
-    let noClicks=0;
-    function dodge(){noClicks++; const scale=Math.min(1+noClicks*.12,1.28); yes.classList.add('growing');yes.style.transform=`scale(${scale})`;yes.style.padding=`${12+noClicks*2}px ${22+noClicks*6}px`;yes.style.fontSize=`${16+noClicks}px`;hearts(yes,5);if(noClicks>=3){no.classList.add('fading');yes.textContent='ได้เลย';setTimeout(()=>no.remove(),400)}else{no.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*34-17}px)`;no.textContent=['ยังงอนอยู่','เอ๊ะ กดไม่โดน','ขอคิดก่อนน้า'][noClicks%3]}}
-    no.addEventListener('pointerenter',dodge);no.addEventListener('click',dodge);
-    function celebration(){const colors=['#ff4f91','#ffd34e','#a57cff','#77d9c7','#fff'];for(let i=0;i<70;i++){const c=document.createElement('i');c.className='confetti';c.style.left=(45+Math.random()*10)+'vw';c.style.top=(42+Math.random()*14)+'svh';c.style.background=colors[i%colors.length];c.style.setProperty('--cx',(Math.random()*100-50)+'vw');c.style.setProperty('--cy',(Math.random()*95-20)+'svh');c.style.animationDelay=(Math.random()*.22)+'s';document.body.append(c);setTimeout(()=>c.remove(),3000)}for(let i=0;i<28;i++){const h=document.createElement('span');h.className='modal-heart';h.textContent=['♥','♡','✦','♥'][i%4];h.style.left=(Math.random()*100)+'vw';h.style.bottom='-30px';h.style.fontSize=(18+Math.random()*28)+'px';h.style.color=colors[i%colors.length];h.style.setProperty('--mx',(Math.random()*120-60)+'px');document.body.append(h);setTimeout(()=>h.remove(),2900)}}
-    yes.onclick=()=>{modal.classList.add('show');hearts(yes,25);celebration()};document.querySelector('#close').onclick=()=>{modal.classList.remove('show');ask.innerHTML='<div class="hug-card"><div class="hug-symbol">♥</div><h2>กอด ๆ กันนะพี่พิ้งค์</h2><p>ขอบคุณที่ให้โอกาสน้องแชมป์นะ<br><b>น้องแชมป์รักพี่พิ้งค์มาก ๆ</b><br>จากนี้น้องแชมป์จะทำให้พี่พิ้งค์ยิ้มเยอะ ๆ เลย</p></div>';};
-    function backgroundHeart(){const h=document.createElement('span');h.className='background-heart';h.textContent=['♥','♡','♥','✦'][Math.floor(Math.random()*4)];h.style.left=(4+Math.random()*92)+'vw';h.style.fontSize=(16+Math.random()*20)+'px';h.style.color=['#ff78a5','#f8a3c0','#e97ca5','#ffc0d3'][Math.floor(Math.random()*4)];h.style.setProperty('--duration',(6+Math.random()*5)+'s');h.style.setProperty('--drift',(Math.random()*100-50)+'px');document.body.append(h);setTimeout(()=>h.remove(),11500)}
-    function stardust(){const s=document.createElement('span');s.className='stardust';s.textContent='\u2726';s.style.left=(5+Math.random()*90)+'vw';s.style.top=(8+Math.random()*82)+'svh';s.style.fontSize=(10+Math.random()*15)+'px';document.body.append(s);setTimeout(()=>s.remove(),4200)}
-    for(let i=0;i<8;i++)setTimeout(backgroundHeart,i*650);setInterval(backgroundHeart,900);for(let i=0;i<10;i++)setTimeout(stardust,i*370);setInterval(stardust,1100);
-  </script>
+    <div class="scene">
+        <div class="sun"></div>
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+        <div class="hill"></div>
+        <div class="hill two"></div><i class="flower" style="left:7%;--d:2s"></i><i class="flower"
+            style="left:20%;--d:3.3s"></i><i class="flower" style="left:76%;--d:2.7s"></i><i class="flower"
+            style="left:89%;--d:3.6s"></i>
+    </div>
+    <div class="night-stars"></div>
+    <header class="top">
+        <div class="brand"></div><button class="pill" id="theme">โหมดค่ำ</button>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-card">
+                <div class="dog" id="dog" aria-label="น้องหมาน่ารัก"><svg viewBox="0 0 160 130">
+                        <path fill="#a86d50"
+                            d="M40 53C12 25 6 3 23 2c17-1 29 24 32 38M120 53c28-28 34-50 17-51-17-1-29 24-32 38" />
+                        <path fill="#ffd5a8"
+                            d="M30 58c0-34 22-51 50-51s50 17 50 51v29c0 27-21 38-50 38S30 114 30 87z" />
+                        <ellipse cx="57" cy="67" rx="7" ry="9" fill="#513946" />
+                        <ellipse cx="103" cy="67" rx="7" ry="9" fill="#513946" />
+                        <circle cx="59" cy="64" r="2" fill="white" />
+                        <circle cx="105" cy="64" r="2" fill="white" />
+                        <path fill="#6e4350" d="M70 82q10 12 20 0" />
+                        <path fill="#e98e9e" d="M73 86q7 7 14 0" />
+                        <circle cx="45" cy="84" r="8" fill="#f4aeb3" opacity=".75" />
+                        <circle cx="115" cy="84" r="8" fill="#f4aeb3" opacity=".75" />
+                    </svg></div>
+                <h1>ถึงพี่อิงคนพิเศษของจัส</h1>
+                <p class="lead">ถึงอาจจะยังเป็นคนคุยของพี่<br>แต่จัสอยากให้พี่อิงรู้ว่า จัสรักพี่อิงนะคับบ</p>
+                <p class="tiny" id="dogText">น้องหมาบอกว่า: “จัสรักพี่อิงมากๆเลยย!”</p><button class="main-btn"
+                    id="surprise">อ่านข้อความจากจัส</button>
+            </div>
+        </section>
+        <section class="section">
+            <h2>สิ่งที่จัสรักในตัวพี่อิง</h2>
+            <p class="sub">ลองกดการ์ดดูทีละใบสิ</p>
+            <div class="cards"><button class="card" style="--r:-2deg"
+                    data-text="ทุกครั้งที่เห็นข้อความจากพี่อิง จัสจะเผลอยิ้มก่อนอ่านเสมอเลย"><svg class="icon"
+                        viewBox="0 0 48 48">
+                        <rect x="8" y="5" width="32" height="38" rx="7" fill="#a9d9ed" />
+                        <rect x="11" y="9" width="26" height="28" rx="3" fill="#fff" />
+                        <path d="M16 19h16M16 25h10" stroke="#f687aa" stroke-width="3" stroke-linecap="round" />
+                    </svg>ข้อความของพี่อิง</button><button class="card" style="--r:2deg"
+                    data-text="พี่อิงทำให้การคุยกันกลายเป็นช่วงเวลาที่จัสอยากอยู่ด้วยตลอดเลยย"><svg class="icon"
+                        viewBox="0 0 48 48">
+                        <path d="M24 5C13 5 6 12 6 22c0 7 4 12 10 15l-2 7 8-4h2c11 0 18-7 18-18S35 5 24 5z"
+                            fill="#b9a6e7" />
+                        <circle cx="17" cy="22" r="2" fill="white" />
+                        <circle cx="24" cy="22" r="2" fill="white" />
+                        <circle cx="31" cy="22" r="2" fill="white" />
+                    </svg>เวลาที่ได้คุย</button><button class="card" style="--r:-1deg"
+                    data-text="พี่ไม่ต้องพยายามพิเศษก็ได้ เพราะแค่เป็นพี่อิงในแบบที่เป็น จัสก็รักแล้ว"><svg class="icon"
+                        viewBox="0 0 48 48">
+                        <path d="M24 40S6 30 6 17C6 7 19 6 24 15 29 6 42 7 42 17c0 13-18 23-18 23z" fill="#fa89ad" />
+                        <path d="M24 15v21M15 22h18" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                    </svg>ความเป็นพี่อิง</button></div>
+            <div id="reply" class="reply"></div>
+        </section>
+        <section class="section">
+            <h2>โหลคำอวยพรจิ๋ว</h2>
+            <div class="jar-wrap">
+                <div class="jar"><b class="jar-heart"><svg viewBox="0 0 48 42">
+                            <path d="M24 40S3 27 3 13C3 2 18 0 24 11 30 0 45 2 45 13c0 14-21 27-21 27z"
+                                fill="#fa89ad" />
+                        </svg></b></div>
+                <div>
+                    <p>วันนี้อยากได้กำลังใจแบบไหน? เขย่าโหลแล้วหยิบออกมาได้เลย</p><button class="mini-btn"
+                        id="wishBtn">เขย่าโหล</button>
+                    <p class="wish" id="wish">ยังไม่มีข้อความ...</p>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h2>วันนี้เป็นยังไงบ้าง?</h2>
+            <div class="activity">
+                <div class="moods"><button class="mood" data-m="วันนี้พี่ดูสดใสมากเลย!"><svg
+                            viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="17" fill="#ffd36f" />
+                            <circle cx="14" cy="17" r="2" />
+                            <circle cx="26" cy="17" r="2" />
+                            <path d="M12 23q8 10 16 0" fill="none" stroke="#694553" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg></button><button class="mood" data-m="พี่เหนื่อยได้ แต่อย่าลืมมาเติมพลังกับจัสนะคับ"><svg
+                            viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="17" fill="#b7d9f5" />
+                            <path d="M12 18h6m4 0h6M14 26q6-4 12 0" fill="none" stroke="#526d8b" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg></button><button class="mood" data-m="จัสขอส่งกำลังใจแบบฟู ๆ ไปให้พี่อิงหนึ่งกอดเยยย"><svg
+                            viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="17" fill="#e6b7dc" />
+                            <path d="M11 20h7m4 0h7M14 27h12" fill="none" stroke="#75586f" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg></button><button class="mood" data-m="เยี่ยมมากเลย! ขอให้ทุกอย่างที่พี่อิงทำราบรื่น"><svg
+                            viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="17" fill="#aee1bc" />
+                            <path d="M12 17h6m4 0h6M13 25q7 7 14 0" fill="none" stroke="#477159" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg></button></div>
+                <p class="mood-msg" id="moodMsg">กดเลือกสีหน้าได้เลย</p>
+                <p class="star-note">เกมจิ๋ว: แตะดาวที่ลอยอยู่ให้ครบ <b><span id="score">0</span>/7</b> ดวง</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        const heart = '<svg viewBox="0 0 48 42"><path d="M24 40S3 27 3 13C3 2 18 0 24 11 30 0 45 2 45 13c0 14-21 27-21 27z" fill="#fa89ad"/></svg>', starSvg = '<svg viewBox="0 0 48 48"><path d="m24 3 5.4 13.1L44 17.3l-11.2 9.4 3.4 14.3L24 33.2 11.8 41l3.4-14.3L4 17.3l14.6-1.2z" fill="#ffd66e"/></svg>'; const reply = document.querySelector('#reply'), dog = document.querySelector('#dog'), dogText = document.querySelector('#dogText'), jar = document.querySelector('.jar'), wishBtn = document.querySelector('#wishBtn'); let jarHearts = 0; function burst(x, y, n = 15) { for (let i = 0; i < n; i++) { let p = document.createElement('i'); p.className = 'pop'; p.innerHTML = heart; p.style.left = x + 'px'; p.style.top = y + 'px'; p.style.setProperty('--x', (-130 + Math.random() * 260) + 'px'); document.body.append(p); setTimeout(() => p.remove(), 1250) } } function addJarHeart() { if (jarHearts >= 11) return; const h = document.createElement('i'); h.className = 'mini-heart'; h.innerHTML = heart; const row = Math.floor(jarHearts / 3), col = jarHearts % 3; h.style.left = (13 + col * 32 + (row % 2) * 5) + 'px'; h.style.bottom = (13 + row * 24) + 'px'; h.style.setProperty('--tilt', (-12 + Math.random() * 24) + 'deg'); jar.append(h); jarHearts++; if (jarHearts === 11) { jar.classList.add('is-full'); wishBtn.textContent = 'โหลเต็มแล้ว'; document.querySelector('#wish').textContent = 'หัวใจของจัสเต็มโหลให้พี่อิงแล้วนะ'; } } dog.onclick = e => { dog.classList.remove('happy'); void dog.offsetWidth; dog.classList.add('happy'); dogText.textContent = ['น้องหมาเขินแทนจัสแล้วนะ', 'น้องหมาส่งกอดนุ่ม ๆ ให้พี่อิง', 'น้องหมาบอกว่า วันนี้พี่อิงเก่งมาก!'][Math.floor(Math.random() * 3)]; burst(e.clientX, e.clientY, 9) }; document.querySelector('#surprise').onclick = e => { reply.textContent = 'แค่ได้คุยกับพี่อิง วันของจัสก็น่ารักขึ้นเยอะเลย จัสรักพี่อิงนะ'; reply.classList.add('show'); reply.scrollIntoView({ behavior: 'smooth', block: 'center' }); burst(e.clientX, e.clientY, 28) }; document.querySelectorAll('.card').forEach(c => c.onclick = e => { reply.textContent = c.dataset.text; reply.classList.add('show'); burst(e.clientX, e.clientY, 10) }); const wishes = ['วันนี้ขอให้พี่อิงเจอแต่เรื่องน่ารัก ๆ นะ', 'พี่อิงอย่าลืมดื่มน้ำแล้วก็พักด้วยนะ', 'จัสรักพี่อิงมากๆเลย อยู่ด้วยกันนานๆนะคับบ', 'ขอให้สิ่งที่พี่อิงตั้งใจไว้ สำเร็จแบบน่ารัก ๆ เลย']; let wi = 0; wishBtn.onclick = e => { jar.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-9deg)' }, { transform: 'rotate(8deg)' }, { transform: 'rotate(0)' }], { duration: 450 }); if (jarHearts < 11) { addJarHeart(); document.querySelector('#wish').textContent = wishes[wi++ % wishes.length]; burst(e.clientX, e.clientY, 10); } }; document.querySelectorAll('.mood').forEach(b => b.onclick = () => { document.querySelectorAll('.mood').forEach(x => x.classList.remove('active')); b.classList.add('active'); document.querySelector('#moodMsg').textContent = b.dataset.m }); document.querySelector('#theme').onclick = e => { document.body.classList.toggle('night'); e.target.textContent = document.body.classList.contains('night') ? 'โหมดเช้า' : 'โหมดค่ำ' }; let score = 0; function addStar() { if (score >= 7) return; let s = document.createElement('button'); s.className = 'star'; s.innerHTML = starSvg; s.style.left = (4 + Math.random() * 92) + 'vw'; s.style.top = (10 + Math.random() * 78) + 'vh'; s.onclick = e => { score++; document.querySelector('#score').textContent = score; burst(e.clientX, e.clientY, 11); s.remove(); if (score === 7) { document.querySelector('#moodMsg').textContent = 'เก็บครบแล้ว! รางวัลคือมาเอากอดกับจัสได้เยยย'; burst(innerWidth / 2, innerHeight / 2, 35) } }; document.body.append(s); setTimeout(() => s.remove(), 5000) } setInterval(addStar, 1300); setTimeout(addStar, 600);
+    </script>
 </body>
+
 </html>
